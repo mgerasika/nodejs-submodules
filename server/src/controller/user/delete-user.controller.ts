@@ -1,19 +1,19 @@
 import { API_URL } from '../../../constants/api-url.constant';
 import { app, IExpressRequest, IExpressResponse } from '../../express-app';
-import { IUserDto } from '../../model/user.dto';
+import { IUserDto } from '../../interfaces/user.dto';
 import { sqlAsync } from '../sql-async';
 import { getUsersAllAsync } from './get-list-user.controller';
 
 interface IRequest extends IExpressRequest {
     params: {
-        id: string;
+        firstName: string;
     };
 }
 
 interface IResponse extends IExpressResponse<IUserDto[], void> {}
 
-app.delete(API_URL.api.user.id().toString(), async (req: IRequest, res: IResponse) => {
-    const [, error] = await deleteUserAsync(req.params.id);
+app.delete(API_URL.api.user.firstName().toString(), async (req: IRequest, res: IResponse) => {
+    const [, error] = await deleteUserAsync(req.params.firstName);
     if (error) {
         return res.status(400).send('error' + error);
     }

@@ -8,18 +8,18 @@ interface IPutUser extends Omit<IUserDto, 'id'> {}
 interface IRequest extends IExpressRequest {
     body: IPutUser;
     params: {
-        id: string;
+        firstName: string;
     };
 }
 
 interface IResponse extends IExpressResponse<IUserDto, void> {}
 
-app.put(API_URL.api.user.id().toString(), async (req: IRequest, res: IResponse) => {
-    const [, error] = await putUserAsync(req.params.id, req.body);
+app.put(API_URL.api.user.firstName().toString(), async (req: IRequest, res: IResponse) => {
+    const [, error] = await putUserAsync(req.params.firstName, req.body);
     if (error) {
         return res.status(400).send('error' + error);
     }
-    const [data] = await getUserByIdAsync(req.params.id);
+    const [data] = await getUserByIdAsync(req.params.firstName);
     res.send(data);
 });
 

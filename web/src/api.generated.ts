@@ -17,64 +17,70 @@ const API_SERVER_URL = "http://localhost:8005/";
 
 // DON'T REMOVE THIS COMMENTS!!! Code between comments auto-generated
 // INSERT START
-export enum EColor {
-  red = "red",
-  black = "black",
-}
 export interface IUserDto {
   id: string;
-  first: string;
-  last: string;
-  age?: number;
-  skinColor?: EColor;
+  metadata?: {
+    order: IOrderDto;
+    first: Date;
+    last?: string;
+    third: Blob;
+  };
+}
+export interface IOrderDto {
+  id: string;
+  orderName: String;
 }
 export interface IPostUser {
-  first: string;
-  last: string;
-  age?: number;
-  skinColor?: EColor;
+  metadata?: {
+    order: IOrderDto;
+    first: Date;
+    last?: string;
+    third: Blob;
+  };
 }
 export interface IPutUser {
-  first: string;
-  last: string;
-  age?: number;
-  skinColor?: EColor;
+  metadata?: {
+    order: IOrderDto;
+    first: Date;
+    last?: string;
+    third: Blob;
+  };
 }
-export type TUserIdDeleteError = "" | "undefined";
-export type TUserIdGetError = "" | "undefined";
-export type TUserIdPutError = "" | "undefined";
+export type TUserFirstNameDeleteError = "" | "undefined";
+export type TUserFirstNameGetError = "" | "undefined";
+export type TUserFirstNamePutError = "" | "undefined";
 export type TUserGetError = "" | "undefined";
 export type TUserPostError = "" | "undefined";
 export type TPartialErrorCodes =
-  | TUserIdDeleteError
-  | TUserIdGetError
-  | TUserIdPutError
+  | TUserFirstNameDeleteError
+  | TUserFirstNameGetError
+  | TUserFirstNamePutError
   | TUserGetError
   | TUserPostError
   | "";
 
 export const createApiRequest = (rs: IRequestService) => ({
-  userIdDelete: (
-    id: string
+  userFirstNameDelete: (
+    firstName: string
   ): CustomPromise<
-    CustomAxiosResponse<Array<IUserDto>, TUserIdDeleteError>,
-    IBEError<TUserIdDeleteError>
-  > => rs.delete(formatUrl(API_SERVER_URL + `api/user/${id}`)),
+    CustomAxiosResponse<Array<IUserDto>, TUserFirstNameDeleteError>,
+    IBEError<TUserFirstNameDeleteError>
+  > => rs.delete(formatUrl(API_SERVER_URL + `api/user/${firstName}`)),
 
-  userIdGet: (
-    id: string
+  userFirstNameGet: (
+    firstName: string
   ): CustomPromise<
-    CustomAxiosResponse<IUserDto, TUserIdGetError>,
-    IBEError<TUserIdGetError>
-  > => rs.get(formatUrl(API_SERVER_URL + `api/user/${id}`)),
+    CustomAxiosResponse<IUserDto, TUserFirstNameGetError>,
+    IBEError<TUserFirstNameGetError>
+  > => rs.get(formatUrl(API_SERVER_URL + `api/user/${firstName}`)),
 
-  userIdPut: (
-    id: string,
+  userFirstNamePut: (
+    firstName: string,
     body: IPutUser
   ): CustomPromise<
-    CustomAxiosResponse<IUserDto, TUserIdPutError>,
-    IBEError<TUserIdPutError>
-  > => rs.put(formatUrl(API_SERVER_URL + `api/user/${id}`), body),
+    CustomAxiosResponse<IUserDto, TUserFirstNamePutError>,
+    IBEError<TUserFirstNamePutError>
+  > => rs.put(formatUrl(API_SERVER_URL + `api/user/${firstName}`), body),
 
   userGet: (
     query: { page?: number; limit?: number } | undefined
@@ -92,9 +98,9 @@ export const createApiRequest = (rs: IRequestService) => ({
 });
 
 const URL = {
-  userIdDelete: (id: string): string => `api/user/${id}`,
-  userIdGet: (id: string): string => `api/user/${id}`,
-  userIdPut: (id: string): string => `api/user/${id}`,
+  userFirstNameDelete: (firstName: string): string => `api/user/${firstName}`,
+  userFirstNameGet: (firstName: string): string => `api/user/${firstName}`,
+  userFirstNamePut: (firstName: string): string => `api/user/${firstName}`,
   userGet: (): string => `api/user/`,
   userPost: (): string => `api/user/`,
 };

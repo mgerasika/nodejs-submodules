@@ -1,18 +1,18 @@
 import { API_URL } from '../../../constants/api-url.constant';
 import { app, IExpressRequest, IExpressResponse } from '../../express-app';
-import { IUserDto } from '../../model/user.dto';
+import { IUserDto } from '../../interfaces/user.dto';
 import { sqlAsync } from '../sql-async';
 
 interface IRequest extends IExpressRequest {
     params: {
-        id: string;
+        firstName: string;
     };
 }
 
 interface IResponse extends IExpressResponse<IUserDto, void> {}
 
-app.get(API_URL.api.user.id().toString(), async (req: IRequest, res: IResponse) => {
-    const [data, error] = await getUserByIdAsync(req.params.id);
+app.get(API_URL.api.user.firstName().toString(), async (req: IRequest, res: IResponse) => {
+    const [data, error] = await getUserByIdAsync(req.params.firstName);
     if (error) {
         return res.status(400).send('error' + error);
     }

@@ -1,12 +1,12 @@
 {
   "paths": {
-    "api/user/{id}": {
+    "api/user/{firstName}": {
       "delete": {
         "operationId": "",
         "summary": "",
         "parameters": [
           {
-            "name": "id",
+            "name": "firstName",
             "in": "path",
             "required": true,
             "schema": {
@@ -43,7 +43,7 @@
         "summary": "",
         "parameters": [
           {
-            "name": "id",
+            "name": "firstName",
             "in": "path",
             "required": true,
             "schema": {
@@ -77,7 +77,7 @@
         "summary": "",
         "parameters": [
           {
-            "name": "id",
+            "name": "firstName",
             "in": "path",
             "required": true,
             "schema": {
@@ -208,74 +208,104 @@
       "IUserDto": {
         "type": "object",
         "required": [
-          "id",
-          "first",
-          "last"
+          "id"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "first": {
-            "type": "string"
-          },
-          "last": {
-            "type": "string"
-          },
-          "age": {
-            "type": "integer"
-          },
-          "skinColor": {
-            "type": "EColor"
+          "metadata": {
+            "type": "object",
+            "required": [
+              "order",
+              "first",
+              "third"
+            ],
+            "properties": {
+              "order": {
+                "type": "IOrderDto"
+              },
+              "first": {
+                "type": "Date"
+              },
+              "last": {
+                "type": "string"
+              },
+              "third": {
+                "type": "Blob"
+              }
+            }
           }
         }
       },
-      "EColor": {
-        "type": "string",
-        "enum": [
-          "red",
-          "black"
-        ]
+      "IOrderDto": {
+        "type": "object",
+        "required": [
+          "id",
+          "orderName"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "orderName": {
+            "type": "String"
+          }
+        }
       },
       "IPostUser": {
         "type": "object",
-        "required": [
-          "first",
-          "last"
-        ],
+        "required": [],
         "properties": {
-          "first": {
-            "type": "string"
-          },
-          "last": {
-            "type": "string"
-          },
-          "age": {
-            "type": "integer"
-          },
-          "skinColor": {
-            "type": "EColor"
+          "metadata": {
+            "type": "object",
+            "required": [
+              "order",
+              "first",
+              "third"
+            ],
+            "properties": {
+              "order": {
+                "type": "IOrderDto"
+              },
+              "first": {
+                "type": "Date"
+              },
+              "last": {
+                "type": "string"
+              },
+              "third": {
+                "type": "Blob"
+              }
+            }
           }
         }
       },
       "IPutUser": {
         "type": "object",
-        "required": [
-          "first",
-          "last"
-        ],
+        "required": [],
         "properties": {
-          "first": {
-            "type": "string"
-          },
-          "last": {
-            "type": "string"
-          },
-          "age": {
-            "type": "integer"
-          },
-          "skinColor": {
-            "type": "EColor"
+          "metadata": {
+            "type": "object",
+            "required": [
+              "order",
+              "first",
+              "third"
+            ],
+            "properties": {
+              "order": {
+                "type": "IOrderDto"
+              },
+              "first": {
+                "type": "Date"
+              },
+              "last": {
+                "type": "string"
+              },
+              "third": {
+                "type": "Blob"
+              }
+            }
           }
         }
       }
